@@ -32,8 +32,11 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #         return data
 
 #     def dequeue(self):
-#         if len(self.storage) > 0:
-#             return self.storage.pop(-1)
+#         data = None
+#         if(len(self.storage) >= 1):
+#             data = self.storage.pop(0)
+#         self.size = len(self.storage)
+#         return data
 
 # with linked list     
 class Queue:
