@@ -27,14 +27,13 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #         return self.size
 
 #     def enqueue(self, value):
-#         self.storage.append(value)
+#         data = self.storage.append(value)
 #         self.size += 1
-#         return self.storage
+#         return data
 
 #     def dequeue(self):
-#         if self.size != 0:
-#             self.size -= 1
-#         return self.size.remove_head()
+#         if len(self.storage) > 0:
+#             return self.storage.pop(-1)
 
 # with linked list     
 class Queue:
