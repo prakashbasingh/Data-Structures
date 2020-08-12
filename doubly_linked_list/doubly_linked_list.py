@@ -65,22 +65,24 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        # if there is no head
-        if self.head is Non:
-            return None
-        # if there is head
-        else:
-            # storing value of head that is going to be removed
-            value = self.head.value
-            # setting new head which is next to the removed_head
-            self.head = self.head.next
-            # settingthe .prev of new head to None
-            self.head.prev = None
-            # decrementing the length
-            self.length -= 1
-            #returning the removed head value
-            return value 
-        
+        # # if there is no head
+        # if self.head is None:
+        #     return None
+        # # if there is head
+        # else:
+        #     # storing value of head that is going to be removed
+        #     value = self.head.value
+        #     # setting new head which is next to the removed_head
+        #     self.head = self.head.next
+        #     # setting the .prev of new head to None
+        #     self.head.prev = None
+        #     # decrementing the length
+        #     self.length -= 1
+        #     #returning the removed head value
+        #     return value 
+        value = self.head.value
+        self.delete(self.head)
+        return value
             
     """
     Wraps the given value in a ListNode and inserts it 
@@ -120,35 +122,82 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_tail(self):
-        # if there is no tail
-        if self.tail is Non:
-            return None
-        # if there is tail
-        else:
-            # storing value of tail that is going to be removed
-            value = self.tail.value
-            # setting new tail as old tail.prev
-            self.tail = value.prev
-            # setting the tail.next to None
-            self.tail.next = None
-            # decrementing the length
-            self.length -= 1
-            #returning the removed tail value
-            return value 
+        # # if there is no tail
+        # if self.tail is None:
+        #     return None
+        # # if there is tail
+        # else:
+        #     # storing value of tail that is going to be removed
+        #     value = self.tail.value
+        #     # setting new tail as old tail.prev
+        #     self.tail = value.prev
+        #     # setting the tail.next to None
+        #     self.tail.next = None
+        #     # decrementing the length
+        #     self.length -= 1
+        #     #returning the removed tail value
+        #     return value 
+        value = self.tail.value
+        self.delete(self.tail)
+        return value
+        
             
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        # # checking if node is head
+        # if self.head == node:
+        #     return
+        # # now checking if node is tail
+        # if self.tail == node:
+        #     self.tail = self.tail.prev
+        #     # now setting tail.next to None
+        #     self.tail.next = None
+        # # else:
+        # #     # setting node.prev.next = node.next
+        # #     node.prev.next = node.next
+            
+        # #setting node.next to head
+        # self.head.prev = node
+        # #setting node.prev to None
+        # node.next = self.head
+        # # set head.prev to node
+        # node.prev = None
+        # # setting head to node
+        # self.head = node
+        value = node.value
+        self.delete(node)
+        self.add_to_head(value)
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        # #checking if node passed is tail
+        # if self.tail == node:
+        #     return
+        # # checking if node passed is head
+        # if self.head == node:
+        #     self.head = self.head.next
+        #     self.head.prev = None
+        # # else:
+        # #     # setting node.prev.next = node.next
+        # #     node.prev.next = node.next
+        
+        # #setting node.next to tail
+        # self.tail.prev = node
+        # #setting node.prev to None
+        # node.prev = self.tail
+        # # set tail.prev to node
+        # node.next = None
+        # # setting tail to node
+        # self.tail = node
+        value = node.value
+        self.delete(node)
+        self.add_to_tail(value)
 
     """
     Deletes the input node from the List, preserving the 
