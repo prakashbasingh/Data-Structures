@@ -315,13 +315,13 @@ class DoublyLinkedList:
             current_node = current_node.next
     
     
-# dllist = DoublyLinkedList()
-# dllist.add_to_head(0)
-# dllist.add_to_tail(1)
-# dllist.add_to_tail(2)
-# dllist.add_to_tail(3)
-# dllist.add_to_tail(4)
-# dllist.add_to_tail(5)
-# dllist.add_to_head(15)
+dllist = DoublyLinkedList()
+dllist.add_to_head(0)
+dllist.add_to_tail(1)
+dllist.add_to_tail(2)
+dllist.add_to_tail(3)
+dllist.add_to_tail(4)
+dllist.add_to_tail(5)
+dllist.add_to_head(15)
 
-# dllist.print_list()
+dllist.print_list()

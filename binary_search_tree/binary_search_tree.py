@@ -36,20 +36,99 @@ class BSTNode:
             # we can park the new node here 
             else:
                 self.right = BSTNode(value)
-
+                
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # base case: first checking self.valuematches the target's value
+        if self.value == target:
+            return True
+        # comparing target to next level value to determine the direction
+        if target < self.value:
+            # need to go left
+            # if there is no left
+            if not self.value:
+                return False
+            #if there is left
+            else:
+                return self.left.contains(target)
+        # if target is > value need to move right
+        else:
+            # if there is no right
+            if not self.right:
+                return False
+            else:
+                return self.right.contains(target)
+         
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # the max value is always going to be the right-most tree node 
+        # Recursive version 
+        # if not self.right:
+        #     return self.value
+        # return self.right.get_max()
 
+        # Iterative version 
+        current = self
+        
+        while current.right:
+            current = current.right
+            
+        # `current` doesn't havea right 
+        return current.value
     # Call the function `fn` on the value of each node
+    # This method doesn't return anything 
     def for_each(self, fn):
-        pass
+                # Recursive 
+        # call fn on self.value 
+        # fn(self.value)
+        # # check if self has a left child 
+        # if self.left:
+        #     # call `for_each` on the left child, passing in the fn 
+        #     self.left.for_each(fn)
+        # # check if self has a right child 
+        # if self.right:
+        #     # call `for_each` on the right child, passing in the fn 
+        #     self.right.for_each(fn)
 
+        # # Depth-First Iterative 
+        # # how do we achieve the same ordering that recursion gave us for free? 
+        # # use a stack to achieve the same ordering 
+        # stack = [] 
+        # # add the root node to our stack 
+        # stack.append(self)
+
+        # # continue popping from our stack so long as there are nodes in it 
+        # while len(stack) > 0:
+        #     current_node = stack.pop()
+
+        #     # check if this node has children 
+        #     if current_node.right:
+        #         stack.append(current_node.right)
+        #     if current_node.left:
+        #         stack.append(current_node.left)
+            
+        #     fn(current_node.value)
+
+        # Breadth-First traversal 
+        from collections import deque
+
+        q = deque()
+        q.append(self)
+
+        while len(q) > 0:
+            current_node = q.popleft()
+
+            # check if this node has children 
+            if current_node.left:
+                q.append(current_node.left)
+            if current_node.right:
+                q.append(current_node.righ)
+
+            fn(current_node.value)
+            
+            
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
@@ -81,7 +160,7 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-bst = BinarySearchTree(1)
+bst = BSTNode(1)
 
 bst.insert(8)
 bst.insert(5)
@@ -98,6 +177,8 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+bst.in_order_print()
 print("post order")
 bst.post_order_dft()  
+
+bst.contains(6)  

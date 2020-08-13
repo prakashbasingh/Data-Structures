@@ -191,8 +191,8 @@ class DoublyLinkedList:
                     cur = None
                     return
             cur = cur.next
-                    
- # https://www.youtube.com/watch?v=Am5u1vaT0x0&list=PL5tcWHG-UPH3nDinW5u_oRcNv6hwhY7ET&index=3
+            
+# learned from :- https://www.youtube.com/watch?v=Am5u1vaT0x0&list=PL5tcWHG-UPH3nDinW5u_oRcNv6hwhY7ET&index=3
                 
             
     
