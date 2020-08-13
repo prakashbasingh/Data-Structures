@@ -5,7 +5,7 @@ as well as its next node in the List.
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.prev = prev
-        self.value = value
+        self.value = value # creates a node object based on the data/value we passed in
         self.next = next
 
     def delete(self):
@@ -32,6 +32,7 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly.
     """
+    #prepend
     def add_to_head(self, value):
          # creating a new node
         new_node = ListNode(value)
@@ -58,6 +59,30 @@ class DoublyLinkedList:
             self.length += 1
             # returning the added head
             return self.head
+        # # or or or
+        # # if there is no head
+        # if self.head is None:
+        #     # then create new node
+        #     new_node = ListNode(value)
+        #     # now new has .prev to None
+        #     new_node.prev = None
+        #     # setting new_node as head
+        #     self.head = new_node
+        # #if there is a list 
+        # else:
+        #     #create new_node
+        #     new_node = ListNode(value)
+        #     # now previous head should .prev to new_node 
+        #     self.head.prev = new_node
+        #     # .next of new_node now should point to original head
+        #     new_node.next = self.head
+        #     # now setting new_node as head
+        #     self.head = new_node
+        #     # and pointing .prev of new_node to None because new_node is Head now
+        #     new_node.prev = None
+
+            
+        
         
     """
     Removes the List's current head node, making the
@@ -89,6 +114,8 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly.
     """
+    
+    # append
     def add_to_tail(self, value):
          # creating a new node
         new_node = ListNode(value)
@@ -115,6 +142,33 @@ class DoublyLinkedList:
             self.tail.next = None
             # and incrementing the length
             self.length+= 1
+        # # or or or
+        # # if there is no head
+        # if self.head is None:
+        #     #creating a new node
+        #     new_node = ListNode(value)
+        #     # setting .prev of new_node to None
+        #     new_node.prev = None
+        #     # making new_node head
+        #     self.head = new_node
+        # else: # if there is already node in the list
+        #     # need to create new node
+        #     new_node = ListNode(value)
+        #     # now retreating from head until we reach the tail
+        #     # and to achieve that we need to set current place to head
+        #     current = self.head
+        #     # while current.next is not None  keep going until the tail node whose next is None
+        #     while current.next:
+        #         # keep going to the next node until reaches the Null
+        #         current = current.next
+        #     # setting new-node to the current tail pointing .next from old .next  from current node
+        #     current.next = new_node
+        #     # once reaches the null seting .prev of new_nod to the current/old tail
+        #     new_node.prev = current
+        #     # now it is tail and  need to set new_node.next to None
+        #     new_node.next = None
+            
+            
             
     """
     Removes the List's current tail node, making the 
@@ -247,3 +301,27 @@ class DoublyLinkedList:
             current = current.next
         # return the largest value 
         return max_value
+    
+    
+    # printing method to print value in the nodes   
+    def print_list(self):
+        # lets say current node is the head of the list
+        current_node = self.head
+        # while current node is not null
+        while current_node:
+            # print the value/data in the head of current node
+            print(current_node.value)
+            # and if next is not null point to next node
+            current_node = current_node.next
+    
+    
+# dllist = DoublyLinkedList()
+# dllist.add_to_head(0)
+# dllist.add_to_tail(1)
+# dllist.add_to_tail(2)
+# dllist.add_to_tail(3)
+# dllist.add_to_tail(4)
+# dllist.add_to_tail(5)
+# dllist.add_to_head(15)
+
+# dllist.print_list()

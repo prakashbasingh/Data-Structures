@@ -22,6 +22,18 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        
+    # printing method to print value in the nodes   
+    def print_list(self):
+        # lets say current node is the head of the list
+        current_node = self.head
+        # while current node is not null
+        while current_node:
+            # print the value/data in the head of current node
+            print(current_node.value)
+            # and if next is not null point to next node
+            current_node = current_node.next_node
+
 
     def add_to_tail(self, value):
         # wrap the value in a Node
@@ -92,3 +104,37 @@ class LinkedList:
             self.head = self.head.get_next()
             # return the old_head's value 
             return val
+    
+    def add_head(self, value):
+        # creating a new node
+        new_node = Node(value)
+        
+        # now .next of new_node should point the original head
+        new_node.next_node = self.head
+        # now setting new_node as new head
+        self.head = new_node
+        
+    # insert_node method will insert new_node in-between already existing nodes
+    def insert_after_node(self, prev_node, value):
+        # first check if there is prev_node
+        if not prev_node:
+            print("Previous node is not in the list")
+            return
+        # if there is prev_node, create new_node
+        new_node = Node(value)
+        # now .next of new_node should point to the same 
+        # node that .next of prev_node is pointing to
+        new_node.next_node = prev_node.next_node
+        # now .next of prev_node should point to new_node
+        # and original .next of prev-node should be deleted
+        prev_node.next_node = new_node
+        
+llist = LinkedList()
+llist.add_to_tail("A")
+llist.add_to_tail("B") 
+llist.add_to_tail("C") 
+llist.add_to_tail("D")
+llist.add_head("E")
+llist.insert_after_node(llist.head.next_node, "ZZ")
+
+llist.print_list() 
