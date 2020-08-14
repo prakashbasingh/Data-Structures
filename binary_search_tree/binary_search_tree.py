@@ -124,7 +124,7 @@ class BSTNode:
             if current_node.left:
                 q.append(current_node.left)
             if current_node.right:
-                q.append(current_node.righ)
+                q.append(current_node.right)
 
             fn(current_node.value)
             
@@ -133,18 +133,58 @@ class BSTNode:
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self):
-        pass
+    def in_order_print(self, node):
+        # if there is no node
+        if node is None:
+            return
+        # if there is node and has left then call self with node.left
+        if node.left:
+            self.in_order_print(node.left)
+        # if there is no node.right or there is node.right print the value of self
+        if not node.right or node.right:
+            print(node.value)
+        # if there is node.right call self with node.right
+        if node.right:
+            self.in_order_print(node.right)
+        
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
-    def bft_print(self):
-        pass
+    def bft_print(self, node):
+        from collections import deque
+
+        queue = deque()
+        queue.append(node)
+        
+        while len(queue) > 0:
+            current_node = queue.popleft()
+            print(current_node.value)
+
+            # check if this node has children 
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
+
+        return
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self):
-        pass
+    def dft_print(self, node):
+        stack = []
+        stack.append(node)
+        
+        while len(stack):
+            current = stack.pop()
+            print(current.value)
+            
+            if current.right:
+                stack.append(current.right)
+            
+            if current.left:
+                stack.append(current.left)
+            
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -170,15 +210,15 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.bft_print()
-bst.dft_print()
+bst.bft_print(bst)
+bst.dft_print(bst)
 
 print("elegant methods")
 print("pre order")
-bst.pre_order_dft()
+# bst.pre_order_dft()
 print("in order")
-bst.in_order_print()
+bst.in_order_print(bst)
 print("post order")
-bst.post_order_dft()  
+# bst.post_order_dft()  
 
 bst.contains(6)  
